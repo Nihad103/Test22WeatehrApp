@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.AppCompatTextView
+    android:id="@+id/textRemoteLocation"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="5dp"
+    android:layout_marginTop="5dp"
+    android:text="Zabrat, Baku, Azerbaijan"
+    android:textColor="@color/black"
+    android:textSize="20sp"
+    xmlns:android="http://schemas.android.com/apk/res/android"/>

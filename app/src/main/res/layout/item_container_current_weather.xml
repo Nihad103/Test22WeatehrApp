@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp"
+    android:elevation="0dp"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="7dp"
+    android:layout_marginBottom="20dp"
+    app:strokeColor="@color/sonicSilver"
+    app:strokeWidth="1dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageIcon"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textTemperature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="27\u2103"
+            android:textColor="@color/black"
+            android:textSize="65sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/imageIcon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageIcon"
+            app:layout_constraintTop_toTopOf="@id/imageIcon" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardWind"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:elevation="0dp"
+            app:cardBackgroundColor="@color/cultured"
+            app:cardCornerRadius="6dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/imageIcon"
+            app:layout_constraintTop_toBottomOf="@id/imageIcon"
+            app:strokeColor="@color/sonicSilver"
+            app:strokeWidth="1dp"
+            app:layout_constraintEnd_toStartOf="@+id/cardHumidity">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="6dp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
+                    android:src="@drawable/baseline_air_24" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="wind"
+                    android:textColor="@color/sonicSilver"
+                    android:textSize="13sp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textWind"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="15 km/h"
+                    android:textColor="@color/raisinBlack"
+                    android:textStyle="bold"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardHumidity"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:elevation="0dp"
+            app:cardBackgroundColor="@color/cultured"
+            app:cardCornerRadius="6dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imageIcon"
+            app:layout_constraintTop_toBottomOf="@id/imageIcon"
+            app:strokeColor="@color/sonicSilver"
+            app:strokeWidth="1dp"
+            app:layout_constraintEnd_toStartOf="@id/cardRainy">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="6dp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
+                    android:src="@drawable/humidity_low_24px" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="humidity"
+                    android:textColor="@color/sonicSilver"
+                    android:textSize="13sp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textHumidity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="20 %"
+                    android:textColor="@color/raisinBlack"
+                    android:textStyle="bold"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardRainy"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:elevation="0dp"
+            app:cardBackgroundColor="@color/cultured"
+            app:cardCornerRadius="6dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/cardHumidity"
+            app:layout_constraintTop_toBottomOf="@id/imageIcon"
+            app:strokeColor="@color/sonicSilver"
+            app:strokeWidth="1dp"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="6dp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
+                    android:src="@drawable/rainy_light_24px" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Rainy"
+                    android:textColor="@color/sonicSilver"
+                    android:textSize="13sp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textRainy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="70 %"
+                    android:textColor="@color/raisinBlack"
+                    android:textStyle="bold"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>
