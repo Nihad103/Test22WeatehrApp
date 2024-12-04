@@ -1,9 +1,14 @@
 package com.example.test22weatehrapp.fragments.home
 
 import android.Manifest
+import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Geocoder
+import android.location.LocationManager
 import android.os.Bundle
+import android.provider.Settings
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,16 +18,13 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.clearFragmentResultListener
-import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.setFragmentResultListener
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.navigateUp
 import com.example.test22weatehrapp.R
 import com.example.test22weatehrapp.adapter.WeatherDataAdapter
 import com.example.test22weatehrapp.data.CurrentLocation
 import com.example.test22weatehrapp.databinding.FragmentHomeBinding
 import com.example.test22weatehrapp.storage.SharedPreferencesManager
-import com.google.android.gms.location.CurrentLocationRequest
 import com.google.android.gms.location.LocationServices
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -55,8 +57,13 @@ class HomeFragment : Fragment() {
         ActivityResultContracts.RequestPermission()
     ) { isGranted ->
         if (isGranted) {
-            getCurrentLocation()
+            if (isLocationServiceEnabled()) {
+                getCurrentLocation()
+            } else {
+                promptEnableLocationServices()
+            }
         } else {
+            Log.d("PermissionDenied", "Permission denied")
             Toast.makeText(requireContext(), "Permission Denied", Toast.LENGTH_SHORT).show()
         }
     }
@@ -150,9 +157,30 @@ class HomeFragment : Fragment() {
 
     private fun proceedWithCurrentLocation() {
         if (isLocationPermissionGranted()) {
-            getCurrentLocation()
+            if (isLocationServiceEnabled()) {
+                getCurrentLocation()
+            } else {
+                promptEnableLocationServices()
+            }
         } else {
             requestLocationPermission()
+        }
+    }
+
+    private fun isLocationServiceEnabled(): Boolean {
+        val locationManager = requireContext().getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(
+            LocationManager.NETWORK_PROVIDER) }
+
+    private fun promptEnableLocationServices() {
+        AlertDialog.Builder(requireContext()).apply {
+            setTitle("Enable Location Services")
+            setMessage("Location services are required to get your current location. Please enable them in settings.")
+            setPositiveButton("Settings") { _, _ ->
+                val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+                startActivity(intent) }
+            setNegativeButton("Cancel", null)
+            show()
         }
     }
 
